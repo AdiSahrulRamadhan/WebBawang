@@ -371,6 +371,33 @@
   }
   .prod-card:hover svg{transform:translateY(-3px) rotate(8deg) scale(1.08);}
   .prod-card h3{font-size:1.2rem;}
+  .prod-price{
+    display:flex;
+    align-items:baseline;
+    gap:6px;
+    margin:4px 0 14px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line);
+  }
+  .prod-price .amount{
+    font-family:'Fraunces', serif;
+    font-size:1.55rem;
+    line-height:1;
+    font-weight:700;
+    color:var(--maroon);
+  }
+  .prod-price .unit{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.72rem;
+    color:var(--ink-soft);
+  }
+  .prod-price-note{
+    margin:18px 0 0;
+    color:var(--ink-soft);
+    font-size:.82rem;
+    text-align:left;
+  }
+  .prod-price-note strong{color:var(--ink);}
   .prod-card p{color:var(--ink-soft); font-size:.94rem; margin-bottom:0;}
   @media (max-width:820px){
     .prod-grid{grid-template-columns:1fr;}
@@ -934,19 +961,29 @@
       <div class="prod-card" data-reveal>
         <svg viewBox="0 0 56 56"><circle cx="28" cy="32" r="20" fill="#7C2E52"/><circle cx="28" cy="32" r="12" fill="#EADFC4"/><path d="M28 12c-4-6 0-10 4-12" stroke="#5C7A4B" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
         <h3>Bawang Merah Brebes</h3>
+        <div class="prod-price" aria-label="Harga mulai tiga puluh satu ribu rupiah per kilogram">
+          <span class="amount">Rp31.000</span><span class="unit">/kg</span>
+        </div>
         <p>Warna cerah, aroma tajam, ukuran seragam. Cocok untuk bumbu dasar, taburan bawang goreng, hingga kebutuhan pasar dan katering.</p>
       </div>
       <div class="prod-card" data-reveal>
         <svg viewBox="0 0 56 56"><circle cx="28" cy="32" r="20" fill="#EADFC4"/><circle cx="28" cy="32" r="12" fill="#FBF7EC"/><path d="M28 12c-4-6 0-10 4-12" stroke="#5C7A4B" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
         <h3>Bawang Putih Lokal</h3>
+        <div class="prod-price" aria-label="Harga mulai tiga puluh satu ribu rupiah per kilogram">
+          <span class="amount">Rp31.000</span><span class="unit">/kg</span>
+        </div>
         <p>Siung padat dan aromatik, dipetik dari mitra dataran tinggi. Pilihan tepat untuk bumbu dasar masakan sehari-hari.</p>
       </div>
       <div class="prod-card" data-reveal>
         <svg viewBox="0 0 56 56"><circle cx="28" cy="32" r="20" fill="#BE8A2E"/><circle cx="28" cy="32" r="12" fill="#F6EFDD"/><path d="M28 12c-4-6 0-10 4-12" stroke="#5C7A4B" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
         <h3>Bawang Bombay</h3>
+        <div class="prod-price" aria-label="Harga mulai tiga puluh dua ribu rupiah per kilogram">
+          <span class="amount">Rp32.000</span><span class="unit">/kg</span>
+        </div>
         <p>Tekstur renyah dan rasa manis saat ditumis. Ukuran besar, cocok untuk restoran dan dapur usaha kuliner.</p>
       </div>
     </div>
+    <p class="prod-price-note" data-reveal><strong>Harga acuan per 29 Juli 2026.</strong> Harga dapat berubah mengikuti pasar harian, kualitas, jumlah pemesanan, dan biaya pengiriman. Konfirmasi harga final melalui WhatsApp sebelum memesan.</p>
   </section>
 
   <!-- KEUNGGULAN -->
@@ -1001,7 +1038,7 @@
       </details>
       <details class="faq-item" data-reveal>
         <summary>Apakah harga bawang tetap setiap hari?<span class="plus"></span></summary>
-        <p>Tidak. Harga bawang mengikuti harga pasar harian dan bisa berubah setiap minggu. Kami selalu sampaikan harga terbaru saat kamu menghubungi kami.</p>
+        <p>Tidak. Harga pada bagian Produk merupakan harga acuan per kilogram dan dapat berubah mengikuti pasar harian, kualitas, jumlah pemesanan, serta biaya pengiriman. Kami selalu mengonfirmasi harga final sebelum pesanan diproses.</p>
       </details>
       <details class="faq-item" data-reveal>
         <summary>Area pengiriman sampai mana saja?<span class="plus"></span></summary>
@@ -1269,7 +1306,7 @@
     { keywords: ['halo','hai','hi','pagi','siang','sore','malam'],
       answer: 'Halo! Aku asisten otomatis Subang. Ada yang mau ditanyakan soal bawang atau website ini?' },
     { keywords: ['harga','berapa harga','mahal','murah'],
-      answer: 'Harga bawang mengikuti harga pasar harian, jadi bisa berubah tiap minggu. Untuk harga terbaru sesuai jumlah yang kamu butuhkan, tanyakan langsung lewat WhatsApp di +62 857-8535-6977 ya.' },
+      answer: 'Harga acuan saat ini: bawang merah Brebes mulai Rp31.000/kg, bawang putih lokal mulai Rp31.000/kg, dan bawang bombay mulai Rp32.000/kg. Harga final dapat berubah mengikuti pasar, kualitas, jumlah pesanan, dan pengiriman. Konfirmasi lewat WhatsApp di +62 857-8535-6977 ya.' },
     { keywords: ['minimal','minimum','moq','satuan','partai kecil','eceran'],
       answer: 'Kami melayani dari partai kecil untuk rumah tangga sampai partai besar untuk pasar dan katering. Minimal order bisa beda tiap jenis bawang, jadi lebih pasti kalau ditanyakan langsung lewat WhatsApp.' },
     { keywords: ['kirim','ongkir','pengiriman','area','jangkau','wilayah','sampai mana'],
