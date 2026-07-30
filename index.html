@@ -399,6 +399,37 @@
   }
   .prod-price-note strong{color:var(--ink);}
   .prod-card p{color:var(--ink-soft); font-size:.94rem; margin-bottom:0;}
+  .prod-card-link{
+    display:block;
+    color:inherit;
+    text-decoration:none;
+    cursor:pointer;
+    position:relative;
+  }
+  .prod-card-link:focus-visible{
+    outline:3px solid var(--ochre);
+    outline-offset:4px;
+  }
+  .prod-card-link::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    border:1px solid transparent;
+    border-radius:var(--radius);
+    pointer-events:none;
+    transition:border-color .2s ease;
+  }
+  .prod-card-link:hover::after{border-color:rgba(124,46,82,.38);}
+  .prod-detail-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:18px;
+    font-weight:600;
+    font-size:.9rem;
+    color:var(--maroon);
+  }
+  .prod-detail-link svg{width:17px; height:17px; margin:0;}
   @media (max-width:820px){
     .prod-grid{grid-template-columns:1fr;}
   }
@@ -854,6 +885,170 @@
     [data-reveal]{opacity:1; transform:none; filter:none;}
     .hero > div:first-child > *{opacity:1;}
   }
+
+
+  /* ---------- Single-file product detail routes ---------- */
+  .product-route-page[hidden]{display:none !important;}
+  .product-route-page{min-height:70vh;}
+  body.product-detail-active .chatbot{display:none;}
+  .pd-breadcrumb{
+    padding-top:30px;
+    font-size:.88rem;
+    color:var(--ink-soft);
+  }
+  .pd-breadcrumb a{color:var(--maroon); text-decoration:none;}
+  .pd-hero{
+    padding-top:36px;
+    padding-bottom:68px;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .pd-eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.74rem;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--maroon);
+  }
+  .pd-hero h1{
+    font-size:clamp(2.4rem,5vw,4.25rem);
+    line-height:1.08;
+  }
+  .pd-hero-copy > p:not(.pd-eyebrow){
+    color:var(--ink-soft);
+    font-size:1.06rem;
+    max-width:58ch;
+    text-align:justify;
+  }
+  .pd-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;}
+  .pd-art{
+    position:relative;
+    display:grid;
+    place-items:center;
+    min-height:410px;
+    padding:34px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:18px;
+    overflow:hidden;
+  }
+  .pd-art::before{
+    content:'';
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    background:var(--pd-accent, var(--maroon));
+    opacity:.13;
+    filter:blur(4px);
+  }
+  .pd-art svg{
+    width:min(78%,340px);
+    position:relative;
+    filter:drop-shadow(0 24px 30px rgba(43,27,31,.14));
+    animation:onionFloat 5s ease-in-out infinite;
+  }
+  .pd-section{padding-block:72px;}
+  .pd-section-head{max-width:720px;margin-bottom:34px;}
+  .pd-section-head > p:last-child{color:var(--ink-soft);}
+  .pd-price-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+  .pd-price-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:30px;
+    position:relative;
+    overflow:hidden;
+  }
+  .pd-price-card.featured{
+    border-color:rgba(124,46,82,.38);
+    box-shadow:0 16px 38px rgba(43,27,31,.08);
+  }
+  .pd-badge{
+    display:inline-flex;
+    padding:5px 9px;
+    border-radius:999px;
+    background:var(--paper);
+    font-size:.74rem;
+    font-weight:600;
+    color:var(--maroon);
+    margin-bottom:16px;
+  }
+  .pd-price{
+    font-family:'Fraunces',serif;
+    font-size:2.15rem;
+    font-weight:700;
+    color:var(--maroon);
+    line-height:1;
+  }
+  .pd-per{
+    font-family:'JetBrains Mono',monospace;
+    font-size:.75rem;
+    color:var(--ink-soft);
+  }
+  .pd-price-card p{color:var(--ink-soft);text-align:justify;margin:18px 0;}
+  .pd-price-card ul{padding-left:18px;margin:0 0 22px;color:var(--ink-soft);}
+  .pd-notice{
+    margin-top:28px;
+    padding:18px 20px;
+    border-left:4px solid var(--ochre);
+    background:var(--paper);
+    color:var(--ink-soft);
+  }
+  .pd-notice strong{color:var(--ink);}
+  .pd-band{background:var(--maroon-deep);color:#F4E8ED;}
+  .pd-band h2,.pd-band h3{color:#fff;}
+  .pd-info-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:55px;align-items:start;}
+  .pd-feature-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .pd-feature{
+    padding:18px;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:8px;
+    background:rgba(255,255,255,.04);
+  }
+  .pd-feature strong{display:block;color:#fff;margin-bottom:4px;}
+  .pd-feature span{font-size:.9rem;color:#DABFCB;}
+  .pd-other-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .pd-other-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding:22px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    text-decoration:none;
+    transition:.2s var(--ease-out);
+  }
+  .pd-other-card:hover{transform:translateY(-3px);border-color:rgba(124,46,82,.35);}
+  .pd-arrow{font-size:1.5rem;color:var(--maroon);}
+  .pd-cta{
+    padding:42px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+  }
+  .pd-cta p{color:var(--ink-soft);margin:0;}
+  .pd-scroll-btn{font-family:inherit;}
+  @media(max-width:850px){
+    .pd-hero,.pd-info-grid{grid-template-columns:1fr;}
+    .pd-art{order:-1;min-height:310px;}
+    .pd-price-grid,.pd-feature-list{grid-template-columns:1fr;}
+  }
+  @media(max-width:600px){
+    .pd-section{padding-block:54px;}
+    .pd-other-grid{grid-template-columns:1fr;}
+    .pd-cta{padding:28px;align-items:flex-start;flex-direction:column;}
+    .pd-hero{padding-bottom:54px;}
+  }
+
 </style>
 </head>
 <body>
@@ -958,32 +1153,41 @@
     <p class="label" data-reveal>Produk</p>
     <h2 id="produk" data-reveal>Tiga jenis bawang, satu standar mutu.</h2>
     <div class="prod-grid">
-      <div class="prod-card" data-reveal>
+      <a class="prod-card prod-card-link" href="#produk-bawang-merah" data-reveal aria-label="Lihat detail Bawang Merah Brebes">
         <svg viewBox="0 0 56 56"><circle cx="28" cy="32" r="20" fill="#7C2E52"/><circle cx="28" cy="32" r="12" fill="#EADFC4"/><path d="M28 12c-4-6 0-10 4-12" stroke="#5C7A4B" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
         <h3>Bawang Merah Brebes</h3>
-        <div class="prod-price" aria-label="Harga mulai tiga puluh satu ribu rupiah per kilogram">
-          <span class="amount">Rp31.000</span><span class="unit">/kg</span>
+        <div class="prod-price" aria-label="Harga tidak dikupas mulai tiga puluh satu ribu rupiah per kilogram">
+          <span class="amount">Rp31.000</span><span class="unit">/kg · tidak dikupas</span>
         </div>
-        <p>Warna cerah, aroma tajam, ukuran seragam. Cocok untuk bumbu dasar, taburan bawang goreng, hingga kebutuhan pasar dan katering.</p>
-      </div>
-      <div class="prod-card" data-reveal>
+        <p>Warna cerah, aroma tajam, ukuran seragam. Tersedia dalam pilihan tidak dikupas dan kupas bersih.</p>
+        <span class="prod-detail-link">Lihat detail &amp; harga kupas
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+      <a class="prod-card prod-card-link" href="#produk-bawang-putih" data-reveal aria-label="Lihat detail Bawang Putih Lokal">
         <svg viewBox="0 0 56 56"><circle cx="28" cy="32" r="20" fill="#EADFC4"/><circle cx="28" cy="32" r="12" fill="#FBF7EC"/><path d="M28 12c-4-6 0-10 4-12" stroke="#5C7A4B" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
         <h3>Bawang Putih Lokal</h3>
-        <div class="prod-price" aria-label="Harga mulai tiga puluh satu ribu rupiah per kilogram">
-          <span class="amount">Rp31.000</span><span class="unit">/kg</span>
+        <div class="prod-price" aria-label="Harga tidak dikupas mulai tiga puluh satu ribu rupiah per kilogram">
+          <span class="amount">Rp31.000</span><span class="unit">/kg · tidak dikupas</span>
         </div>
-        <p>Siung padat dan aromatik, dipetik dari mitra dataran tinggi. Pilihan tepat untuk bumbu dasar masakan sehari-hari.</p>
-      </div>
-      <div class="prod-card" data-reveal>
+        <p>Siung padat dan aromatik. Tersedia dalam pilihan utuh tidak dikupas serta siung kupas bersih.</p>
+        <span class="prod-detail-link">Lihat detail &amp; harga kupas
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+      <a class="prod-card prod-card-link" href="#produk-bawang-bombay" data-reveal aria-label="Lihat detail Bawang Bombay">
         <svg viewBox="0 0 56 56"><circle cx="28" cy="32" r="20" fill="#BE8A2E"/><circle cx="28" cy="32" r="12" fill="#F6EFDD"/><path d="M28 12c-4-6 0-10 4-12" stroke="#5C7A4B" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
         <h3>Bawang Bombay</h3>
-        <div class="prod-price" aria-label="Harga mulai tiga puluh dua ribu rupiah per kilogram">
-          <span class="amount">Rp32.000</span><span class="unit">/kg</span>
+        <div class="prod-price" aria-label="Harga tidak dikupas mulai tiga puluh dua ribu rupiah per kilogram">
+          <span class="amount">Rp32.000</span><span class="unit">/kg · tidak dikupas</span>
         </div>
-        <p>Tekstur renyah dan rasa manis saat ditumis. Ukuran besar, cocok untuk restoran dan dapur usaha kuliner.</p>
-      </div>
+        <p>Tekstur renyah dan rasa manis saat ditumis. Tersedia utuh maupun kupas bersih untuk dapur usaha.</p>
+        <span class="prod-detail-link">Lihat detail &amp; harga kupas
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
     </div>
-    <p class="prod-price-note" data-reveal><strong>Harga acuan per 29 Juli 2026.</strong> Harga dapat berubah mengikuti pasar harian, kualitas, jumlah pemesanan, dan biaya pengiriman. Konfirmasi harga final melalui WhatsApp sebelum memesan.</p>
+    <p class="prod-price-note" data-reveal><strong>Harga acuan per 30 Juli 2026.</strong> Klik setiap produk untuk melihat harga versi kupas dan tidak dikupas. Harga dapat berubah mengikuti pasar harian, kualitas, jumlah pemesanan, dan biaya pengiriman. Konfirmasi harga final melalui WhatsApp sebelum memesan.</p>
   </section>
 
   <!-- KEUNGGULAN -->
@@ -1143,6 +1347,234 @@
     </div>
   </section>
 
+</main>
+
+
+<main class="product-route-page" id="page-produk-bawang-merah" data-product-route="produk-bawang-merah" data-product-title="Bawang Merah Brebes — Subang Surabaya Bawang" hidden>
+  <div class="pd-breadcrumb wrap"><a href="#beranda">Beranda</a> &nbsp;/&nbsp; <a href="#produk">Produk</a> &nbsp;/&nbsp; Bawang Merah Brebes</div>
+  <section class="pd-hero wrap">
+    <div class="pd-hero-copy">
+      <p class="pd-eyebrow">Produk bawang merah</p>
+      <h1>Bawang Merah Brebes</h1>
+      <p>Bawang merah Brebes dengan warna cerah, aroma tajam, dan ukuran yang disortir agar lebih seragam. Cocok untuk kebutuhan rumah tangga, katering, warung makan, restoran, dan produksi bawang goreng.</p>
+      <div class="pd-actions">
+        <button class="btn btn-primary pd-scroll-btn" type="button" data-scroll-target="harga-produk-bawang-merah">Lihat Pilihan Harga</button>
+        <a class="btn btn-ghost" href="#produk">Kembali ke Produk</a>
+      </div>
+    </div>
+    <div class="pd-art" style="--pd-accent:#7C2E52" aria-hidden="true">
+      <svg viewBox="0 0 400 420">
+        <ellipse cx="200" cy="230" rx="145" ry="155" fill="#7C2E52"/>
+        <ellipse cx="200" cy="230" rx="112" ry="120" fill="#EADFC4"/>
+        <ellipse cx="200" cy="230" rx="78" ry="84" fill="#F6EFDD"/>
+        <ellipse cx="200" cy="230" rx="42" ry="46" fill="#FBF7EC"/>
+        <path d="M200 78c-6-25 5-45 26-58M200 78c6-25-5-45-26-58" stroke="#5C7A4B" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <path d="M174 384c-11 12-15 24-10 37M226 384c11 12 15 24 10 37M200 388v34" stroke="#8B6A3E" stroke-width="3" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="pd-section wrap" id="harga-produk-bawang-merah">
+    <div class="pd-section-head">
+      <p class="pd-eyebrow">Pilihan produk</p>
+      <h2>Pilih kupas atau tidak dikupas.</h2>
+      <p>Harga dihitung per kilogram. Pilih versi yang sesuai dengan kebutuhan penyimpanan dan kecepatan persiapan dapur.</p>
+    </div>
+    <div class="pd-price-grid">
+      <article class="pd-price-card">
+        <span class="pd-badge">Lebih tahan disimpan</span>
+        <h3>Tidak dikupas</h3>
+        <div><span class="pd-price">Rp31.000</span> <span class="pd-per">/kg</span></div>
+        <p>Bawang masih memiliki kulit luar alami sehingga lebih tahan disimpan dan cocok untuk stok dapur atau pembelian dalam jumlah besar.</p>
+        <ul><li>Disortir sebelum dikemas</li><li>Ditimbang berdasarkan berat saat dikirim</li><li>Cocok untuk stok dan penggunaan bertahap</li></ul>
+        <a class="btn btn-ghost" href="https://wa.me/6285785356977?text=Hallo%20Subang%2C%20saya%20ingin%20memesan%20Bawang%20Merah%20Brebes%20tidak%20dikupas.%20Mohon%20info%20harga%20final%20dan%20minimal%20pemesanan." target="_blank" rel="noopener">Pesan tidak dikupas</a>
+      </article>
+      <article class="pd-price-card featured">
+        <span class="pd-badge">Siap diolah</span>
+        <h3>Kupas bersih</h3>
+        <div><span class="pd-price">Rp38.000</span> <span class="pd-per">/kg</span></div>
+        <p>Kulit luar sudah dibersihkan sehingga produk siap dicuci, dipotong, atau diolah. Cocok untuk dapur yang membutuhkan persiapan lebih cepat.</p>
+        <ul><li>Sudah melalui proses pengupasan</li><li>Dikemas bersih untuk mempercepat persiapan</li><li>Cocok untuk katering dan dapur produksi</li></ul>
+        <a class="btn btn-primary" href="https://wa.me/6285785356977?text=Hallo%20Subang%2C%20saya%20ingin%20memesan%20Bawang%20Merah%20Brebes%20kupas%20bersih.%20Mohon%20info%20harga%20final%20dan%20minimal%20pemesanan." target="_blank" rel="noopener">Pesan kupas bersih</a>
+      </article>
+    </div>
+    <div class="pd-notice"><strong>Catatan harga:</strong> harga ini merupakan harga acuan dan dapat berubah mengikuti pasar harian, mutu, jumlah pesanan, serta biaya pengiriman. Konfirmasi harga final melalui WhatsApp sebelum transaksi.</div>
+  </section>
+
+  <section class="pd-section pd-band">
+    <div class="pd-info-grid wrap">
+      <div>
+        <p class="pd-eyebrow" style="color:#C77B9C">Mutu produk</p>
+        <h2>Disortir sebelum dikirim.</h2>
+        <p style="color:#DABFCB">Produk diperiksa sebelum pengemasan untuk mengurangi bawang yang terlalu lembek, rusak, atau tidak layak kirim.</p>
+      </div>
+      <div class="pd-feature-list"><div class="pd-feature"><strong>Asal petani mitra Brebes</strong><span>Kualitas dijaga sejak penyortiran hingga pengemasan.</span></div><div class="pd-feature"><strong>Aroma kuat untuk bumbu dasar</strong><span>Kualitas dijaga sejak penyortiran hingga pengemasan.</span></div><div class="pd-feature"><strong>Disortir berdasarkan kondisi dan ukuran</strong><span>Kualitas dijaga sejak penyortiran hingga pengemasan.</span></div><div class="pd-feature"><strong>Tersedia untuk rumah tangga dan usaha</strong><span>Kualitas dijaga sejak penyortiran hingga pengemasan.</span></div></div>
+    </div>
+  </section>
+
+  <section class="pd-section wrap">
+    <div class="pd-section-head"><p class="pd-eyebrow">Produk lainnya</p><h2>Lihat pilihan bawang lain.</h2></div>
+    <div class="pd-other-grid"><a class="pd-other-card" href="#produk-bawang-putih"><div><span class="pd-eyebrow">Produk</span><h3>Bawang Putih Lokal</h3></div><span class="pd-arrow">→</span></a><a class="pd-other-card" href="#produk-bawang-bombay"><div><span class="pd-eyebrow">Produk</span><h3>Bawang Bombay</h3></div><span class="pd-arrow">→</span></a></div>
+  </section>
+
+  <section class="pd-section wrap">
+    <div class="pd-cta">
+      <div><h2>Butuh harga untuk jumlah besar?</h2><p>Sampaikan pilihan kupas atau tidak dikupas, jumlah kilogram, dan lokasi pengiriman.</p></div>
+      <a class="btn btn-primary" href="https://wa.me/6285785356977?text=Hallo%20Subang%2C%20saya%20ingin%20meminta%20penawaran%20Bawang%20Merah%20Brebes.%20Pilihan%3A%20%5Bkupas/tidak%20dikupas%5D%2C%20jumlah%3A%20%5B___%5D%20kg%2C%20lokasi%20kirim%3A%20%5B___%5D." target="_blank" rel="noopener">Minta Penawaran</a>
+    </div>
+  </section>
+</main>
+
+
+<main class="product-route-page" id="page-produk-bawang-putih" data-product-route="produk-bawang-putih" data-product-title="Bawang Putih Lokal — Subang Surabaya Bawang" hidden>
+  <div class="pd-breadcrumb wrap"><a href="#beranda">Beranda</a> &nbsp;/&nbsp; <a href="#produk">Produk</a> &nbsp;/&nbsp; Bawang Putih Lokal</div>
+  <section class="pd-hero wrap">
+    <div class="pd-hero-copy">
+      <p class="pd-eyebrow">Produk bawang putih</p>
+      <h1>Bawang Putih Lokal</h1>
+      <p>Bawang putih lokal dengan siung padat dan aroma kuat. Tersedia dalam kondisi utuh maupun kupas bersih untuk mempercepat persiapan dapur rumah tangga dan usaha kuliner.</p>
+      <div class="pd-actions">
+        <button class="btn btn-primary pd-scroll-btn" type="button" data-scroll-target="harga-produk-bawang-putih">Lihat Pilihan Harga</button>
+        <a class="btn btn-ghost" href="#produk">Kembali ke Produk</a>
+      </div>
+    </div>
+    <div class="pd-art" style="--pd-accent:#BE8A2E" aria-hidden="true">
+      <svg viewBox="0 0 400 420">
+        <ellipse cx="200" cy="230" rx="145" ry="155" fill="#EADFC4"/>
+        <ellipse cx="200" cy="230" rx="112" ry="120" fill="#F6EFDD"/>
+        <ellipse cx="200" cy="230" rx="78" ry="84" fill="#FBF7EC"/>
+        <ellipse cx="200" cy="230" rx="42" ry="46" fill="#FBF7EC"/>
+        <path d="M200 78c-6-25 5-45 26-58M200 78c6-25-5-45-26-58" stroke="#5C7A4B" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <path d="M174 384c-11 12-15 24-10 37M226 384c11 12 15 24 10 37M200 388v34" stroke="#8B6A3E" stroke-width="3" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="pd-section wrap" id="harga-produk-bawang-putih">
+    <div class="pd-section-head">
+      <p class="pd-eyebrow">Pilihan produk</p>
+      <h2>Pilih kupas atau tidak dikupas.</h2>
+      <p>Harga dihitung per kilogram. Pilih versi yang sesuai dengan kebutuhan penyimpanan dan kecepatan persiapan dapur.</p>
+    </div>
+    <div class="pd-price-grid">
+      <article class="pd-price-card">
+        <span class="pd-badge">Lebih tahan disimpan</span>
+        <h3>Tidak dikupas</h3>
+        <div><span class="pd-price">Rp31.000</span> <span class="pd-per">/kg</span></div>
+        <p>Bawang masih memiliki kulit luar alami sehingga lebih tahan disimpan dan cocok untuk stok dapur atau pembelian dalam jumlah besar.</p>
+        <ul><li>Disortir sebelum dikemas</li><li>Ditimbang berdasarkan berat saat dikirim</li><li>Cocok untuk stok dan penggunaan bertahap</li></ul>
+        <a class="btn btn-ghost" href="https://wa.me/6285785356977?text=Hallo%20Subang%2C%20saya%20ingin%20memesan%20Bawang%20Putih%20Lokal%20tidak%20dikupas.%20Mohon%20info%20harga%20final%20dan%20minimal%20pemesanan." target="_blank" rel="noopener">Pesan tidak dikupas</a>
+      </article>
+      <article class="pd-price-card featured">
+        <span class="pd-badge">Siap diolah</span>
+        <h3>Kupas bersih</h3>
+        <div><span class="pd-price">Rp39.000</span> <span class="pd-per">/kg</span></div>
+        <p>Kulit luar sudah dibersihkan sehingga produk siap dicuci, dipotong, atau diolah. Cocok untuk dapur yang membutuhkan persiapan lebih cepat.</p>
+        <ul><li>Sudah melalui proses pengupasan</li><li>Dikemas bersih untuk mempercepat persiapan</li><li>Cocok untuk katering dan dapur produksi</li></ul>
+        <a class="btn btn-primary" href="https://wa.me/6285785356977?text=Hallo%20Subang%2C%20saya%20ingin%20memesan%20Bawang%20Putih%20Lokal%20kupas%20bersih.%20Mohon%20info%20harga%20final%20dan%20minimal%20pemesanan." target="_blank" rel="noopener">Pesan kupas bersih</a>
+      </article>
+    </div>
+    <div class="pd-notice"><strong>Catatan harga:</strong> harga ini merupakan harga acuan dan dapat berubah mengikuti pasar harian, mutu, jumlah pesanan, serta biaya pengiriman. Konfirmasi harga final melalui WhatsApp sebelum transaksi.</div>
+  </section>
+
+  <section class="pd-section pd-band">
+    <div class="pd-info-grid wrap">
+      <div>
+        <p class="pd-eyebrow" style="color:#C77B9C">Mutu produk</p>
+        <h2>Disortir sebelum dikirim.</h2>
+        <p style="color:#DABFCB">Produk diperiksa sebelum pengemasan untuk mengurangi bawang yang terlalu lembek, rusak, atau tidak layak kirim.</p>
+      </div>
+      <div class="pd-feature-list"><div class="pd-feature"><strong>Siung padat dan aromatik</strong><span>Kualitas dijaga sejak penyortiran hingga pengemasan.</span></div><div class="pd-feature"><strong>Disortir sebelum dikemas</strong><span>Kualitas dijaga sejak penyortiran hingga pengemasan.</span></div><div class="pd-feature"><strong>Tersedia versi utuh dan kupas</strong><span>Kualitas dijaga sejak penyortiran hingga pengemasan.</span></div><div class="pd-feature"><strong>Cocok untuk stok dapur produksi</strong><span>Kualitas dijaga sejak penyortiran hingga pengemasan.</span></div></div>
+    </div>
+  </section>
+
+  <section class="pd-section wrap">
+    <div class="pd-section-head"><p class="pd-eyebrow">Produk lainnya</p><h2>Lihat pilihan bawang lain.</h2></div>
+    <div class="pd-other-grid"><a class="pd-other-card" href="#produk-bawang-merah"><div><span class="pd-eyebrow">Produk</span><h3>Bawang Merah Brebes</h3></div><span class="pd-arrow">→</span></a><a class="pd-other-card" href="#produk-bawang-bombay"><div><span class="pd-eyebrow">Produk</span><h3>Bawang Bombay</h3></div><span class="pd-arrow">→</span></a></div>
+  </section>
+
+  <section class="pd-section wrap">
+    <div class="pd-cta">
+      <div><h2>Butuh harga untuk jumlah besar?</h2><p>Sampaikan pilihan kupas atau tidak dikupas, jumlah kilogram, dan lokasi pengiriman.</p></div>
+      <a class="btn btn-primary" href="https://wa.me/6285785356977?text=Hallo%20Subang%2C%20saya%20ingin%20meminta%20penawaran%20Bawang%20Putih%20Lokal.%20Pilihan%3A%20%5Bkupas/tidak%20dikupas%5D%2C%20jumlah%3A%20%5B___%5D%20kg%2C%20lokasi%20kirim%3A%20%5B___%5D." target="_blank" rel="noopener">Minta Penawaran</a>
+    </div>
+  </section>
+</main>
+
+
+<main class="product-route-page" id="page-produk-bawang-bombay" data-product-route="produk-bawang-bombay" data-product-title="Bawang Bombay — Subang Surabaya Bawang" hidden>
+  <div class="pd-breadcrumb wrap"><a href="#beranda">Beranda</a> &nbsp;/&nbsp; <a href="#produk">Produk</a> &nbsp;/&nbsp; Bawang Bombay</div>
+  <section class="pd-hero wrap">
+    <div class="pd-hero-copy">
+      <p class="pd-eyebrow">Produk bawang bombay</p>
+      <h1>Bawang Bombay</h1>
+      <p>Bawang bombay berukuran besar dengan tekstur renyah dan rasa lebih manis saat ditumis. Cocok untuk restoran, katering, burger, saus, tumisan, dan berbagai kebutuhan dapur usaha.</p>
+      <div class="pd-actions">
+        <button class="btn btn-primary pd-scroll-btn" type="button" data-scroll-target="harga-produk-bawang-bombay">Lihat Pilihan Harga</button>
+        <a class="btn btn-ghost" href="#produk">Kembali ke Produk</a>
+      </div>
+    </div>
+    <div class="pd-art" style="--pd-accent:#BE8A2E" aria-hidden="true">
+      <svg viewBox="0 0 400 420">
+        <ellipse cx="200" cy="230" rx="145" ry="155" fill="#BE8A2E"/>
+        <ellipse cx="200" cy="230" rx="112" ry="120" fill="#EADFC4"/>
+        <ellipse cx="200" cy="230" rx="78" ry="84" fill="#F6EFDD"/>
+        <ellipse cx="200" cy="230" rx="42" ry="46" fill="#FBF7EC"/>
+        <path d="M200 78c-6-25 5-45 26-58M200 78c6-25-5-45-26-58" stroke="#5C7A4B" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <path d="M174 384c-11 12-15 24-10 37M226 384c11 12 15 24 10 37M200 388v34" stroke="#8B6A3E" stroke-width="3" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="pd-section wrap" id="harga-produk-bawang-bombay">
+    <div class="pd-section-head">
+      <p class="pd-eyebrow">Pilihan produk</p>
+      <h2>Pilih kupas atau tidak dikupas.</h2>
+      <p>Harga dihitung per kilogram. Pilih versi yang sesuai dengan kebutuhan penyimpanan dan kecepatan persiapan dapur.</p>
+    </div>
+    <div class="pd-price-grid">
+      <article class="pd-price-card">
+        <span class="pd-badge">Lebih tahan disimpan</span>
+        <h3>Tidak dikupas</h3>
+        <div><span class="pd-price">Rp32.000</span> <span class="pd-per">/kg</span></div>
+        <p>Bawang masih memiliki kulit luar alami sehingga lebih tahan disimpan dan cocok untuk stok dapur atau pembelian dalam jumlah besar.</p>
+        <ul><li>Disortir sebelum dikemas</li><li>Ditimbang berdasarkan berat saat dikirim</li><li>Cocok untuk stok dan penggunaan bertahap</li></ul>
+        <a class="btn btn-ghost" href="https://wa.me/6285785356977?text=Hallo%20Subang%2C%20saya%20ingin%20memesan%20Bawang%20Bombay%20tidak%20dikupas.%20Mohon%20info%20harga%20final%20dan%20minimal%20pemesanan." target="_blank" rel="noopener">Pesan tidak dikupas</a>
+      </article>
+      <article class="pd-price-card featured">
+        <span class="pd-badge">Siap diolah</span>
+        <h3>Kupas bersih</h3>
+        <div><span class="pd-price">Rp40.000</span> <span class="pd-per">/kg</span></div>
+        <p>Kulit luar sudah dibersihkan sehingga produk siap dicuci, dipotong, atau diolah. Cocok untuk dapur yang membutuhkan persiapan lebih cepat.</p>
+        <ul><li>Sudah melalui proses pengupasan</li><li>Dikemas bersih untuk mempercepat persiapan</li><li>Cocok untuk katering dan dapur produksi</li></ul>
+        <a class="btn btn-primary" href="https://wa.me/6285785356977?text=Hallo%20Subang%2C%20saya%20ingin%20memesan%20Bawang%20Bombay%20kupas%20bersih.%20Mohon%20info%20harga%20final%20dan%20minimal%20pemesanan." target="_blank" rel="noopener">Pesan kupas bersih</a>
+      </article>
+    </div>
+    <div class="pd-notice"><strong>Catatan harga:</strong> harga ini merupakan harga acuan dan dapat berubah mengikuti pasar harian, mutu, jumlah pesanan, serta biaya pengiriman. Konfirmasi harga final melalui WhatsApp sebelum transaksi.</div>
+  </section>
+
+  <section class="pd-section pd-band">
+    <div class="pd-info-grid wrap">
+      <div>
+        <p class="pd-eyebrow" style="color:#C77B9C">Mutu produk</p>
+        <h2>Disortir sebelum dikirim.</h2>
+        <p style="color:#DABFCB">Produk diperiksa sebelum pengemasan untuk mengurangi bawang yang terlalu lembek, rusak, atau tidak layak kirim.</p>
+      </div>
+      <div class="pd-feature-list"><div class="pd-feature"><strong>Ukuran besar dan seragam</strong><span>Kualitas dijaga sejak penyortiran hingga pengemasan.</span></div><div class="pd-feature"><strong>Rasa manis saat dimasak</strong><span>Kualitas dijaga sejak penyortiran hingga pengemasan.</span></div><div class="pd-feature"><strong>Tekstur renyah untuk tumisan</strong><span>Kualitas dijaga sejak penyortiran hingga pengemasan.</span></div><div class="pd-feature"><strong>Tersedia untuk pesanan usaha</strong><span>Kualitas dijaga sejak penyortiran hingga pengemasan.</span></div></div>
+    </div>
+  </section>
+
+  <section class="pd-section wrap">
+    <div class="pd-section-head"><p class="pd-eyebrow">Produk lainnya</p><h2>Lihat pilihan bawang lain.</h2></div>
+    <div class="pd-other-grid"><a class="pd-other-card" href="#produk-bawang-merah"><div><span class="pd-eyebrow">Produk</span><h3>Bawang Merah Brebes</h3></div><span class="pd-arrow">→</span></a><a class="pd-other-card" href="#produk-bawang-putih"><div><span class="pd-eyebrow">Produk</span><h3>Bawang Putih Lokal</h3></div><span class="pd-arrow">→</span></a></div>
+  </section>
+
+  <section class="pd-section wrap">
+    <div class="pd-cta">
+      <div><h2>Butuh harga untuk jumlah besar?</h2><p>Sampaikan pilihan kupas atau tidak dikupas, jumlah kilogram, dan lokasi pengiriman.</p></div>
+      <a class="btn btn-primary" href="https://wa.me/6285785356977?text=Hallo%20Subang%2C%20saya%20ingin%20meminta%20penawaran%20Bawang%20Bombay.%20Pilihan%3A%20%5Bkupas/tidak%20dikupas%5D%2C%20jumlah%3A%20%5B___%5D%20kg%2C%20lokasi%20kirim%3A%20%5B___%5D." target="_blank" rel="noopener">Minta Penawaran</a>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -1306,7 +1738,7 @@
     { keywords: ['halo','hai','hi','pagi','siang','sore','malam'],
       answer: 'Halo! Aku asisten otomatis Subang. Ada yang mau ditanyakan soal bawang atau website ini?' },
     { keywords: ['harga','berapa harga','mahal','murah'],
-      answer: 'Harga acuan saat ini: bawang merah Brebes mulai Rp31.000/kg, bawang putih lokal mulai Rp31.000/kg, dan bawang bombay mulai Rp32.000/kg. Harga final dapat berubah mengikuti pasar, kualitas, jumlah pesanan, dan pengiriman. Konfirmasi lewat WhatsApp di +62 857-8535-6977 ya.' },
+      answer: 'Harga acuan tidak dikupas: bawang merah Rp31.000/kg, bawang putih Rp31.000/kg, dan bawang bombay Rp32.000/kg. Versi kupas: bawang merah Rp38.000/kg, bawang putih Rp39.000/kg, dan bawang bombay Rp40.000/kg. Harga final dapat berubah, jadi konfirmasi lewat WhatsApp di +62 857-8535-6977 ya.' },
     { keywords: ['minimal','minimum','moq','satuan','partai kecil','eceran'],
       answer: 'Kami melayani dari partai kecil untuk rumah tangga sampai partai besar untuk pasar dan katering. Minimal order bisa beda tiap jenis bawang, jadi lebih pasti kalau ditanyakan langsung lewat WhatsApp.' },
     { keywords: ['kirim','ongkir','pengiriman','area','jangkau','wilayah','sampai mana'],
@@ -1314,7 +1746,7 @@
     { keywords: ['bayar','pembayaran','transfer','cod','rekening'],
       answer: 'Pembayaran bisa lewat transfer bank atau tunai (COD) untuk wilayah Surabaya. Detailnya diberikan setelah pesanan dikonfirmasi lewat WhatsApp.' },
     { keywords: ['jenis','produk','bombay','bawang merah','bawang putih','macam'],
-      answer: 'Kami menjual tiga jenis bawang: bawang merah Brebes, bawang putih lokal, dan bawang bombay. Detailnya ada di bagian Produk pada halaman ini.' },
+      answer: 'Kami menjual bawang merah Brebes, bawang putih lokal, dan bawang bombay. Klik kartu produknya untuk membuka halaman detail serta membandingkan harga kupas dan tidak dikupas.' },
     { keywords: ['pesan','order','cara beli','cara pesan','mau beli'],
       answer: 'Caranya gampang: klik "Hubungi Kami" di atas lalu pilih "Kontak Kami", atau langsung chat WhatsApp ke +62 857-8535-6977 dan sebutkan jenis serta jumlah bawang yang kamu butuhkan.' },
     { keywords: ['kontak','whatsapp','wa','hubungi','nomor','email'],
@@ -1389,6 +1821,65 @@
       addMessage('bot', findAnswer(text));
     }, 550);
   });
+
+  // ---------- Single-file product routing ----------
+  // Menggunakan URL hash agar halaman detail tetap bisa dibuka walau hosting hanya menyajikan index.html.
+  const homeMain = document.getElementById('top');
+  const productRoutePages = [...document.querySelectorAll('[data-product-route]')];
+  const defaultPageTitle = document.title;
+
+  function closeOpenPanelsForRoute(){
+    mobilePanel.classList.remove('open');
+    burgerBtn.setAttribute('aria-expanded', false);
+    hubungiDropdown.classList.remove('open');
+    hubungiBtn.setAttribute('aria-expanded', false);
+    if (typeof closeChat === 'function') closeChat();
+  }
+
+  function renderHashRoute(){
+    const route = window.location.hash.slice(1);
+    const activePage = productRoutePages.find(page => page.dataset.productRoute === route);
+
+    if (activePage){
+      homeMain.hidden = true;
+      productRoutePages.forEach(page => {
+        const active = page === activePage;
+        page.hidden = !active;
+        page.setAttribute('aria-hidden', String(!active));
+      });
+      document.body.classList.add('product-detail-active');
+      document.title = activePage.dataset.productTitle || defaultPageTitle;
+      closeOpenPanelsForRoute();
+      requestAnimationFrame(() => window.scrollTo({top:0, left:0, behavior:'auto'}));
+      return;
+    }
+
+    homeMain.hidden = false;
+    productRoutePages.forEach(page => {
+      page.hidden = true;
+      page.setAttribute('aria-hidden', 'true');
+    });
+    document.body.classList.remove('product-detail-active');
+    document.title = defaultPageTitle;
+
+    if (route){
+      requestAnimationFrame(() => {
+        const target = document.getElementById(route);
+        if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    }
+  }
+
+  document.querySelectorAll('.pd-scroll-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const target = document.getElementById(button.dataset.scrollTarget);
+      if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  window.addEventListener('hashchange', renderHashRoute);
+  renderHashRoute();
+
 </script>
 
 </body>
